@@ -1,6 +1,6 @@
 /**
  * @author       Richard Davey <rich@phaser.io>
- * @copyright    2013-2024 Phaser Studio Inc.
+ * @copyright    2013-2025 Phaser Studio Inc.
  * @license      {@link https://opensource.org/licenses/MIT|MIT License}
  */
 
@@ -1022,6 +1022,7 @@ var ScenePlugin = new Class({
      *
      * @generic {Phaser.Scene} T
      * @genericUse {(T|string)} - [key]
+     * @genericUse {T} - [$return]
      *
      * @method Phaser.Scenes.ScenePlugin#get
      * @since 3.0.0

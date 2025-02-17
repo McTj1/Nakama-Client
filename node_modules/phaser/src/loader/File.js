@@ -1,6 +1,6 @@
 /**
  * @author       Richard Davey <rich@phaser.io>
- * @copyright    2013-2024 Phaser Studio Inc.
+ * @copyright    2013-2025 Phaser Studio Inc.
  * @license      {@link https://opensource.org/licenses/MIT|MIT License}
  */
 
@@ -597,7 +597,7 @@ File.createObjectURL = function (image, blob, defaultType)
 
 /**
  * Static method for releasing an existing object URL which was previously created
- * by calling {@link File#createObjectURL} method.
+ * by calling {@link Phaser.Loader.File.createObjectURL} method.
  *
  * @method Phaser.Loader.File.revokeObjectURL
  * @static

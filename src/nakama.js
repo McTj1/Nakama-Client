@@ -12,8 +12,7 @@ class Nakama {
   async authenticate() {
     const useSSL = false
     this.client = new Client('defaultkey', 'localhost', '7350', useSSL)
-
-    console.log(this.client, '++++++++++++++++++++++++++ client')
+    this.client.console.log(this.client, '++++++++++++++++++++++++++ client')
 
     let deviceId = localStorage.getItem('deviceId')
     if (!deviceId) {

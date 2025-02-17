@@ -1,6 +1,6 @@
 /**
  * @author       Richard Davey <rich@phaser.io>
- * @copyright    2013-2024 Phaser Studio Inc.
+ * @copyright    2013-2025 Phaser Studio Inc.
  * @license      {@link https://opensource.org/licenses/MIT|MIT License}
  */
 
@@ -1377,6 +1377,8 @@ var ParticleEmitter = new Class({
      * anim: [ 'red', 'green', 'blue', 'pink', 'white' ]
      * anim: { anims: [ 'red', 'green', 'blue', 'pink', 'white' ], [cycle: bool], [quantity: int] }
      *
+     * Call this method at least once before any particles are created, or set `anim` in the Particle Emitter's configuration when creating the Emitter.
+     *
      * @method Phaser.GameObjects.Particles.ParticleEmitter#setAnim
      * @since 3.60.0
      *
@@ -1806,7 +1808,7 @@ var ParticleEmitter = new Class({
      * or any object with a suitable {@link Phaser.Types.GameObjects.Particles.EdgeZoneSourceCallback getPoints} method.
      *
      * A {@link Phaser.Types.GameObjects.Particles.ParticleEmitterRandomZoneConfig RandomZone} places the particles randomly within its interior.
-     * Its {@link RandomZoneSource source} can be a Circle, Ellipse, Line, Polygon, Rectangle, or Triangle; or any object with a suitable {@link Phaser.Types.GameObjects.Particles.RandomZoneSourceCallback getRandomPoint} method.
+     * Its {@link Phaser.GameObjects.Particles.Zones.RandomZone#source source} can be a Circle, Ellipse, Line, Polygon, Rectangle, or Triangle; or any object with a suitable {@link Phaser.Types.GameObjects.Particles.RandomZoneSourceCallback getRandomPoint} method.
      *
      * An Emission Zone can only exist once within this Emitter.
      *
