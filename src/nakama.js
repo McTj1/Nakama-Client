@@ -5,51 +5,42 @@ class Nakama {
   constructor() {
     this.client
     this.session
-    this.socket
-    this.matchID
+    this.socket // ep4
+    this.matchID // ep4
   }
 
-  async login() {}
-
-  //  UnhandledPromiseRejectionWarning: ReferenceError: XMLHttpRequest is not defined not support when run nodejs. **
   async authenticate() {
-    try {
-      this.client = new Client('defaultkey', 'localhost', '7350')
-      this.client.ssl = false
+    this.client = new Client('defaultkey', 'localhost', '7350')
+    this.client.ssl = false
 
-      let deviceId = uuidv4()
-      // if (!deviceId) {
-      //   deviceId = uuidv4()
-      //   localStorage.setItem('deviceId', deviceId)
-      // }
-
-      this.session = await this.client.authenticateCustom(deviceId, true)
-      // localStorage.setItem('user_id', this.session.user_id)
-
-      // ep4
-      const trace = false
-      this.socket = this.client.createSocket(this.useSSL, trace)
-      await this.socket.connect(this.session)
-    } catch (error) {
-      console.error('Error authenticating:', error)
+    let deviceId = localStorage.getItem('deviceId')
+    if (!deviceId) {
+      deviceId = uuidv4()
+      localStorage.setItem('deviceId', deviceId)
     }
+
+    this.session = await this.client.authenticateDevice(deviceId, true)
+    localStorage.setItem('user_id', this.session.user_id)
+
+    // ep4
+    const trace = false
+    this.socket = this.client.createSocket(this.useSSL, trace)
+    await this.socket.connect(this.session)
   }
 
   async findMatch(ai = false) {
+    // ep4
     const rpcid = 'find_match'
     const matches = await this.client.rpc(this.session, rpcid, { ai: ai })
-    console.log(matches, '**** findMatch ****')
+
     this.matchID = matches.payload.matchIds[0]
-    try {
-      await this.socket.joinMatch(this.matchID)
-      console.log('Matched joined!')
-    } catch (error) {
-      console.error('Error joining match:', error)
-    }
+    await this.socket.joinMatch(this.matchID)
+    console.log('Matched joined!')
   }
 
   async makeMove(index) {
-    var data = { position: index, namePlayer: 'TJ' }
+    // ep4
+    var data = { position: index }
     await this.socket.sendMatchState(this.matchID, 4, JSON.stringify(data))
     console.log('Match data sent')
   }
